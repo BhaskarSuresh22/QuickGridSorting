@@ -1,0 +1,21 @@
+<div class="quickgrid-shell">
+    <QuickGrid Items="@products" Class="quickgrid-validation">
+        <PropertyColumn Property="@(product => product.Name)" Title="Name" Sortable="true" />
+        <PropertyColumn Property="@(product => product.Price)" Title="Price" Sortable="true"
+                        IsDefaultSortColumn="true" InitialSortDirection="SortDirection.Ascending"
+                        Format="C" />
+        <PropertyColumn Property="@(product => product.ItemNumber)" Sortable="true" />
+    </QuickGrid>
+</div>
+
+@code {
+    private static readonly IQueryable<Product> products = Enumerable.Range(1, 60)
+        .Select(index => new Product(
+            ItemNumber: index,
+            Name: $"Item {index:00}",
+            Price: 10m + ((index * 37) % 60)))
+        .OrderBy(product => (product.ItemNumber * 23) % 61)
+        .AsQueryable();
+
+    private sealed record Product(int ItemNumber, string Name, decimal Price);
+}

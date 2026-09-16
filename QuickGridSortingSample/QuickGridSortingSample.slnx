@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="QuickGridSortingSample.Client/QuickGridSortingSample.Client.csproj" />
+  <Project Path="QuickGridSortingSample/QuickGridSortingSample.csproj" />
+</Solution>
